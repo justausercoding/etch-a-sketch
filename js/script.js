@@ -1,35 +1,46 @@
+let num = 16;
 const container = document.querySelector(".container");
 
-let num = 16;
-let height = window.innerHeight;
-let width = window.innerWidth;
-let collectionRow = [];
+createBoxes(num);
 
-// create the rows
-for (let i = num; i > 0; i--) {
-    let oneRow = document.createElement("div");
-    oneRow.classList.add("row-box");
-    container.appendChild(oneRow);
-    collectionRow.push(oneRow);
-}
+function createBoxes(num) {
+    let collectionRow = [];
 
-// create the boxes in each row
-for (const row of collectionRow) {
+    // create the rows
     for (let i = num; i > 0; i--) {
-        let oneBox = document.createElement("div");
-        oneBox.classList.add("one-box");
-        row.appendChild(oneBox);
+        let oneRow = document.createElement("div");
+        oneRow.classList.add("row-box");
+        container.appendChild(oneRow);
+        collectionRow.push(oneRow);
     }
-}
-console.log(collectionRow);
 
-const boxesNodes = document.querySelectorAll(".one-box");
+    // create the boxes in each row
+    for (const row of collectionRow) {
+        for (let i = num; i > 0; i--) {
+            let oneBox = document.createElement("div");
+            oneBox.classList.add("one-box");
+            row.appendChild(oneBox);
+        }
+    }
 
-console.log(boxesNodes);
-
-boxesNodes.forEach((box) => {
-    box.addEventListener("mouseover", () => {
-        console.log(box);
-        box.style.backgroundColor = "green";
+    // add the eventlistener to change box color
+    const boxesNodes = document.querySelectorAll(".one-box");
+    boxesNodes.forEach((box) => {
+        box.addEventListener("mouseover", () => {
+            box.style.backgroundColor = "grey";
+        });
     });
-});
+}
+
+// Button
+const button = document.querySelector("button");
+button.addEventListener("click", () => {
+    let newGrid;
+    while (true) {
+        newGrid = +prompt("Please enter a number:", 16);
+        if (Number.isInteger(newGrid) && (newGrid <= 100) && (newGrid > 0)) break;
+    }
+    container.replaceChildren();
+    createBoxes(newGrid);
+})
+
