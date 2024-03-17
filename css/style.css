@@ -1,32 +1,38 @@
-
 html,
 body {
     height: 100vh;
     margin: 0;
 }
 
+button {
+    box-sizing: border-box; /* height is border + padding + content */
+    display: block;
+    margin: 5px auto;
+    height: 30px;
+    background-color: white;
+    border: 1px solid lightcoral;
+    border-radius: 3px;
+    color: lightcoral;
+}
+
 .container {
-    border: 1px solid red;
-    margin: 0 auto;
     width: 100%;
-    height: 100%;
-    /* as parent */
+    height:calc(100% - 40px);
+    /* flex: as parent */
     display: flex;
     flex-direction: column;
-
 }
 
 .row-box {
-    border: 1px solid blue;
-    /* as child */
+    /* flex: as child */
     flex: 1;
-    /* as parent */
+    /* flex: as parent */
     display: flex;
     flex-direction: row;
 }
 
 .one-box {
-    border: 1px solid palevioletred;
-    /* as child */
+    border: 1px solid white;
+    /* flex: as child */
     flex: 1;
 }
